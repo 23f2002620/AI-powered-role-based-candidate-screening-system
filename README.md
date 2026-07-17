@@ -180,13 +180,3 @@ tracebacks going to server logs, not the client).
 
 ---
 
-## 7. Extending the system
-
-- **New role**: add `backend/app/knowledge_base/<role>.md`, add the role id to
-  `SUPPORTED_ROLES` in `.env`, add its topic list + label to `ROLE_TOPICS`/`ROLE_LABELS` in
-  `question_generator.py`.
-- **Real embedding model**: implement it inside `VectorStore` (e.g. call an embeddings API) and
-  keep the same `build`/`search`/`save`/`load` interface — nothing else changes.
-- **Postgres instead of SQLite**: set `DATABASE_URL` in `.env`; no code changes required.
-- **Richer adaptation**: `interview_service._create_next_question` is the single seam where
-  topic/difficulty policy lives, if you want to plug in a smarter strategy.
